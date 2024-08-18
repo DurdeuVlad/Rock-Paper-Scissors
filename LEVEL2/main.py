@@ -16,13 +16,13 @@ def process_fights(list_fights):
         return_contents.append(decide_winner(list_fights[i]))
     return return_contents
 
-def process_tournament(tournament_info, rounds=2):
+def process_tournament(tournament_info, rounds=100):
     #rounds = int(tournament_info[0][0])  # Number of rounds to simulate
-    number_of_fighters = int(tournament_info[0][1])  # Number of fighters in each tournament string
+    #number_of_fighters = int(tournament_info[0][1])  # Number of fighters in each tournament string
     
     results = []
     
-    for tournament in tournament_info[1:]:
+    for tournament in tournament_info:
         fighters = list(tournament)
         
         # Loop for the specified number of rounds or until only one fighter remains
@@ -32,7 +32,7 @@ def process_tournament(tournament_info, rounds=2):
             
             next_round = []
             # Pair fighters and decide the winner
-            for i in range(0, len(fighters), 2):
+            for i in range(0, len(fighters)-1, 2):
                 winner = decide_winner(fighters[i] + fighters[i + 1])
                 next_round.append(winner)
             
@@ -47,10 +47,10 @@ def process_tournament(tournament_info, rounds=2):
 
 
 # Loop through the file names from 1 to 5
-for i in range(1, 6):
+for i in range(1, 2):
     # Construct the file name
     file_contents = []
-    filename = f"level2_{i}.in"
+    filename = f"level4_{i}.out"
     
     # Open and read the contents of the file
     with open(filename, 'r') as file:
@@ -66,7 +66,7 @@ for i in range(1, 6):
     print(file_contents)
     print(result)
 
-    with open(filename.replace("in", "out"), 'w') as file:
+    with open(filename.replace("out", "out2"), 'w') as file:
         for line in result:
             file.write(line+"\n")
 

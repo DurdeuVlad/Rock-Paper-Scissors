@@ -21,8 +21,10 @@ def process_tournament(tournament_info, rounds=100):
     #number_of_fighters = int(tournament_info[0][1])  # Number of fighters in each tournament string
     
     results = []
+    tournament_number = 1
     
     for tournament in tournament_info:
+        print(f"\ntournament_number: {tournament_number}")
         fighters = list(tournament)
         
         # Loop for the specified number of rounds or until only one fighter remains
@@ -32,8 +34,10 @@ def process_tournament(tournament_info, rounds=100):
             
             next_round = []
             # Pair fighters and decide the winner
+            print(f"round_number: {round_number} ")
             for i in range(0, len(fighters)-1, 2):
                 winner = decide_winner(fighters[i] + fighters[i + 1])
+                print(f"Fighter 1: {fighters[i]} and fighter 2 {fighters[i+1]}. winner: {winner}")
                 next_round.append(winner)
             
             fighters = next_round  # Move to the next round with the winners
@@ -47,7 +51,7 @@ def process_tournament(tournament_info, rounds=100):
 
 
 # Loop through the file names from 1 to 5
-for i in range(1, 2):
+for i in range(1, 6):
     # Construct the file name
     file_contents = []
     filename = f"level4_{i}.out"

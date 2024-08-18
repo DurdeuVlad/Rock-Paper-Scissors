@@ -77,14 +77,16 @@ def generate_tournament(fighter_string):
     # Initialize left and right halves
     left_half = []
     right_half = []
+    left_half_count = 0
     
     # Handle the left half: all rocks and exactly one paper
-    if rock_count > 0:
-        left_half.extend(['R'] * min(rock_count, int(max_count/2)-1))
-        rock_count -= min(rock_count, int(max_count/2)-1)  # most rocks placed
     if paper_count > 0:
         left_half.append('P')
         paper_count -= 1  # One paper placed
+    if rock_count > 0:
+        left_half.extend(['R'] * min(rock_count, int(max_count/2)-1-left_half_count))
+        rock_count -= min(rock_count, int(max_count/2)-1-left_half_count)  # most rocks placed
+
     
     # R < P*3
     # rp_pairs = min(paper_count, rock_count)
@@ -144,7 +146,7 @@ def generate_tournaments(full_fight_list):
     return result
 
 # # Loop through the file names from 1 to 5
-for i in range(1, 2):
+for i in range(1, 6):
     # Construct the file name
     file_contents = []
     filename = f"level4_{i}.in"
